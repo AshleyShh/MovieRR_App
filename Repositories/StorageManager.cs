@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
+using Microsoft.Identity.Client;
 using MovieRR_App.Model;
 using System.Data;
 using System.Security.AccessControl;
