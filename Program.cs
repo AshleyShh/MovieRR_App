@@ -1,5 +1,6 @@
 ﻿using MovieRR_App.Repositories;
 using MovieRR_App.View;
+using System.Runtime.InteropServices;
 
 namespace MovieRR_App
 {
@@ -42,8 +43,48 @@ namespace MovieRR_App
                     break;
 
             }
-            storageManager.CloseConnection ();
+            storageManager.CloseConnection();
             
+
+
+            private static void UpdateDirectorName()
+            { 
+                view.DisplayMessage("Enter the directorid to update:    ");
+                int directorId = view.GetIntInput();
+                view.DisplayMessage("Enter the new director name:   ");
+                string directorName = view.GetInput();
+                int rowsAffected = storageManager.UpdateDirectorName(directorId, directorName);
+                view.DisplayMessage($"Rows affected: {rowsAffected}");
+            }
+
+            /* private static void InsertNewDirector()
+             {
+            view.DisplayMessage("Enter the new director name:  *);
+            string directorName = view.GetInput();
+            int generateId = strongeManager.InsertDirector
+            view.DisplayMessage($"New group insert
+
+            }*/
+
+            private static void InsertNewDirectors()
+            {
+                view.DisplayMessage("Enter the new director name:  ");
+                string directorName = view.GetInput();
+                int directorID = 0;
+                Director directors1 = new Director(directorID, directorName);
+                int generateID = storageManager.InsertNewDirectors(directors1);
+                view.DisplayMessage($"New director inserted with ID: {generateID}");
+            }
+
+            private static void DeleteDirectorByName()
+            {
+                view.DisplayMessage("Enter the director name to delete:   ");
+                string directorName = view.GetInput();
+                int rowsAffected = storageManager.DeleteDirectorByName(directorName);
+                view.DisplayMessage($"Rows affected: {rowsAffected}");
+            }
+
+    
         }
     }
 }

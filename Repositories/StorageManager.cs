@@ -65,7 +65,7 @@ namespace MovieRR_App.Repositories
 
             }
         }
-        public  int InsertDirector(Director director1)
+        public  int InsertNewDirectors(Director director1)
         {
             using SqlCommand cmd = new SqlCommand("INSERT INTO DirectorsTable (directorName) " +
                 "VALUES (@DirectorName); SELECT SCOPE_IDENTITY(); ", conn);
