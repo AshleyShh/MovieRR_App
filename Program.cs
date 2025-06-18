@@ -20,17 +20,17 @@ namespace MovieRR_App
 
             switch (choice)
             {
-                case "1";
+                case "1":
                     { 
-                        List<Director> director = storageManager.GetAllDirectors ();
-                        view.DisplayDirector(director);
+                        List<Directors> director = storageManager.GetAllDirectors();
+                        view.DisplayDirector(directors);
                     }
-                    break
+                    break;
                         case "2":
                     UpdateDirectorName();
                     break;
                     case "3":
-                    InsertNewDirector();
+                    InsertNewDirectors();
                     break;
                     case "4":
                     DeleteDirectorByName();

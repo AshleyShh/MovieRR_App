@@ -19,6 +19,8 @@ namespace MovieRR_App.View
             Console.WriteLine("4.  Delete a Director by director_name    ");
             return Console.ReadLine();
         }
+
+        
         public void DisplayDirector(List<Director> directors)
         {
             foreach (Director director in directors)
