@@ -12,27 +12,27 @@ namespace MovieRR_App
         {
             Console.WriteLine("Hello, World!");
             string connectionString = "Data Source=(localdb)\\ProjectModels;Initial Catalog=master;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
-            storageManager = new StorageManager (connectionString);
+            storageManager = new StorageManager(connectionString);
 
             storageManager = new StorageManager(connectionString);
-            view = new ConsoleView ();
+            view = new ConsoleView();
             string choice = view.DisplayMenu();
 
             switch (choice)
             {
                 case "1":
-                    { 
+                    {
                         List<Directors> director = storageManager.GetAllDirectors();
                         view.DisplayDirector(directors);
                     }
                     break;
-                        case "2":
+                case "2":
                     UpdateDirectorName();
                     break;
-                    case "3":
+                case "3":
                     InsertNewDirectors();
                     break;
-                    case "4":
+                case "4":
                     DeleteDirectorByName();
                     break;
                 /*case "5":
@@ -43,7 +43,8 @@ namespace MovieRR_App
                     break;
 
             }
-            storageManager.CloseConnection();           
+            storageManager.CloseConnection();
+        
 
 
             private static void UpdateDirectorName()
