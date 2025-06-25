@@ -62,7 +62,7 @@ namespace MovieRR_App.Repositories
             { cmd.Parameters.AddWithValue("@DirectorName", directorName);
                 cmd.Parameters.AddWithValue("@DirectorID", directorID);
                 return cmd.ExecuteNonQuery();
-
+                
             }
         }
         public int InsertNewDirectors(Director director1)

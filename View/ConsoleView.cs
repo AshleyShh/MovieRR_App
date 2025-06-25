@@ -9,6 +9,25 @@ namespace MovieRR_App.View
 {
     public class ConsoleView
     {
+
+        public int LoginMenu()
+        {
+            int choice;
+            Console.WriteLine("Welcome to my Movie Website! ");
+            do
+            {
+                Console.WriteLine("LOGIN HERE:");
+                Console.WriteLine("1. User Login");
+                Console.WriteLine("2. User Registration");
+                Console.WriteLine("3. Admin Login");
+                Console.WriteLine("4. Exit");
+                Console.WriteLine("Select an option: ");
+                choice = int.Parse(Console.ReadLine());
+                if ((choice < 0) || (choice > 4))
+                    Console.WriteLine("Invalid input. Please enter your choice again.");
+            } while ((choice < 1) || (choice > 4));
+            return choice;
+        }
         public string DisplayMenu()
         {
             Console.WriteLine("Welcome to my Movie Rating programe! ");
@@ -20,7 +39,7 @@ namespace MovieRR_App.View
             return Console.ReadLine();
         }
 
-        
+         
         public void DisplayDirector(List<Director> directors)
         {
             foreach (Director director in directors)
