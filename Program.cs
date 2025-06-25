@@ -43,8 +43,7 @@ namespace MovieRR_App
                     break;
 
             }
-            storageManager.CloseConnection();
-            
+            storageManager.CloseConnection();           
 
 
             private static void UpdateDirectorName()
