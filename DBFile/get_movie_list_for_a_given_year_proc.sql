@@ -13,7 +13,7 @@ begin
 --Validate if the ReleaseYear passed by the user is valid)
 if (@ReleaseYear <= 0 OR @ReleaseYear is null)
 begin 
-	raiserror('Invalid value for a Release Year of a Movie', 18, 1);
+	raiserror('Invalid value of release year was given.', 18, 1);
 end
 
 select MoviesTable.MovieTitle,
