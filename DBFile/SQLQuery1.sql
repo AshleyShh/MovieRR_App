@@ -1,5 +1,12 @@
-﻿--create schema movies 
+﻿--use master 
 --go
+--alter database [MovieRR_Database] set single_user with rollback immediate
+--drop database MovieRR_Database
+--go
+--create database MovieRR_Database
+--use MovieRR_Database
+--go
+
 
 -- this table holds all the directors
 create table DirectorsTable(
@@ -13,19 +20,20 @@ create table GenreTable(
 	)
 
 	-- diifferent age ratings for movies
-create table AgeRatings(
+create table AgeRatingsTable(
 	AgeRatingID int identity (1,1) not null primary key, 
 	AgeRating varchar(50) not null unique
 	)
 
-	-- holds all the movies, each movie has a title, director, genre, release year, age rating
+	-- holds all the movies, each movie has a title, director, genre, age rating
 create table MoviesTable(
 	MovieID int identity (1,1) not null primary key,
 	MovieTitle varchar(255) not null, -- title
 	DirectorID int not null foreign key references DirectorsTable(DirectorID), -- linking to DirectorsTable
 	GenreID int not null foreign key references GenreTable(GenreID), -- linking to GenreTable
 	ReleaseYear int not null,  -- the yr the movie was released
---	AgeRatingID int not null foreign key references AgeRatings(AgeRatingID) -- linking to AgeRatings table
+	AgeRatingID int not null foreign key references AgeRatingsTable(AgeRatingID), -- linking to AgeRatings table
+	UNIQUE(MovieTitle, DirectorID, ReleaseYear)
 	)
 
 	-- store the ratings for each movie from IMDb and Rotten Tomatoes
@@ -40,8 +48,12 @@ create table RatingsTable(
 
 
 -- adding data
-INSERT INTO DirectorsTable (DirectorName) VALUES
-('Christopher Nolan'), ('Quentin Tarantino'), ('Steven Spielberg'), ('Martin Scorsese'), 
+INSERT INTO DirectorsTable (DirectorName) 
+VALUES
+('Christopher Nolan'), 
+('Quentin Tarantino'), 
+('Steven Spielberg'), 
+('Martin Scorsese'), 
 ('James Cameron'), ('Ridley Scott'), ('Peter Jackson'), ('Francis Ford Coppola'), 
 ('Stanley Kubrick'), ('David Fincher'), ('Alfred Hitchcock'), ('Tim Burton'), 
 ('Guillermo del Toro'), ('Greta Gerwig'), ('Denis Villeneuve'), ('Paul Thomas Anderson'), 
@@ -86,14 +98,22 @@ INSERT INTO GenreTable (Genre) VALUES
 
 
 -- Inserting 100 rows into AgeRatings
-INSERT INTO AgeRatings (AgeRating) VALUES
+INSERT INTO AgeRatingsTable (AgeRating) VALUES
 ('G'), ('PG'), ('PG-13'), ('R'), ('NC-17')
 
-INSERT INTO MoviesTable (MovieTitle, DirectorID, GenreID, ReleaseYear ) VALUES
-('Inception', 1, 13, 2010), ('Pulp Fiction', 2, 6, 1994), ('Jaws', 3, 10, 1975),
-('The Irishman', 4, 7, 2019), ('Avatar', 5, 14, 2009), ('Alien', 6, 11, 1979),
-('The Lord of the Rings', 7, 9, 2001), ('The Godfather', 8, 6, 1972), ('The Shining', 9, 10, 1980),
-('Fight Club', 10, 7, 1999), ('Psycho', 11, 10, 1960), ('Edward Scissorhands', 12, 3, 1990);
+INSERT INTO MoviesTable (MovieTitle, DirectorID, GenreID, ReleaseYear, AgeRatingID ) VALUES
+('Inception', 1, 13, 2010, 3), 
+('Pulp Fiction', 2, 6, 1994, 3), 
+('Jaws', 3, 10, 1975, 3),
+('The Irishman', 4, 7, 2019, 3),
+('Avatar', 5, 14, 2009, 3), 
+('Alien', 6, 11, 1979, 3),
+('The Lord of the Rings', 7, 9, 2001, 3), 
+('The Godfather', 8, 6, 1972, 3), 
+('The Shining', 9, 10, 1980, 3),
+('Fight Club', 10, 7, 1999, 3), 
+('Psycho', 11, 10, 1960, 3), 
+('Edward Scissorhands', 12, 3, 1990, 3);
 
 
 
@@ -102,8 +122,8 @@ INSERT INTO MoviesTable (MovieTitle, DirectorID, GenreID, ReleaseYear ) VALUES
 
 INSERT INTO RatingsTable (MovieID, IMDbRating, RottenTomatoesRating)
 VALUES
---(1, 8, 86), 
---(2, 9, 92), 
+(1, 8, 86), 
+(2, 9, 92), 
 (3, 8, 91), 
 (4, 9, 96), 
 (5, 7, 89), 
@@ -113,6 +133,6 @@ VALUES
 (9, 7, 96), 
 (10, 8, 87),
 (11, 9, 97),
-(12, 8, 90), 
-(13, 7, 85), 
-(14, 10, 99);
+(12, 8, 90)
+
+
